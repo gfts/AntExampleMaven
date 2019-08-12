@@ -4,7 +4,7 @@
   <groupId>com.vaannila</groupId>
   <artifactId>AntExampleMaven</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>AntExampleMaven Maven Webapp</name>
   <url>https://repo.maven.apache.org/maven2</url>
 
@@ -36,12 +36,32 @@
     </dependencies>
 	</dependencyManagement -->
 
+<distributionManagement>
+  <repository>
+    <id>nexus-releases</id>
+    <!-- CHANGE HERE by your team nexus server -->
+    <url>http://ec2-54-84-15-86.compute-1.amazonaws.com:8081/repository/servlet-release/</url>
+  </repository>
+  <snapshotRepository>
+    <id>nexus-snapshots</id>
+    <!-- CHANGE HERE by your team nexus server -->
+    <url>http://ec2-54-84-15-86.compute-1.amazonaws.com:8081/repository/servlet-snapshot/</url>
+  </snapshotRepository>
+</distributionManagement>
+
+
+
 <repositories>
    <repository>
    <id>spring-olugin</id>
    <name>Spring Milestone Repository</name>
    <url>https://repo.spring.io/plugins-release/</url>
   </repository>
+    <repository>
+      <id>nexus-central</id>
+      <name>nexus central</name>
+      <url>http://ec2-54-84-15-86.compute-1.amazonaws.com:8081/repository/servlet-central/</url>
+    </repository>
 <repository>
     <id>spring-milestone</id>
     <name>Spring Milestones</name>
@@ -229,6 +249,51 @@
   <port>8080</port> 
  </configuration>   
 </plugin> -->
+
+<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>2.6</version>
+</plugin>
+
+   <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-antrun-plugin</artifactId>
+      <version>1.8</version>
+      <executions>
+        <execution>
+          <id>scp-to-remote</id>
+          <phase>package</phase>
+          <goals>
+            <goal>run</goal>
+          </goals>
+          <configuration>
+            <target>
+                <scp file="target/AntExampleMaven.war"
+           trust="yes"
+           todir="ubuntu@172.31.41.189:/home/ubuntu/apache-tomcat-8.5.43/webapps"
+           keyfile="${user.home}/.ssh/id_rsa"
+           passphrase="my extremely secret passphrase"/>
+            </target>
+          </configuration>
+        </execution>
+      </executions>
+        <dependencies>
+        <dependency>
+          <groupId>com.jcraft</groupId>
+          <artifactId>jsch</artifactId>
+          <version>0.1.53</version>
+        </dependency>
+        <dependency>
+          <groupId>ant</groupId>
+          <artifactId>ant-jsch</artifactId>
+          <version>1.6.5</version>
+        </dependency>
+      </dependencies>
+    </plugin>
+    
+
 </plugins>
   
   </build>

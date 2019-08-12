@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <scp trust="yes" file="target/AntExampleMaven.war" todir="ubuntu@172.31.41.189:/home/ubuntu/apache-tomcat-8.5.43/webapps" keyfile="/home/Aastha/.ssh/id_rsa" passphrase="my extremely secret passphrase"/>
+</target>
+</project>
