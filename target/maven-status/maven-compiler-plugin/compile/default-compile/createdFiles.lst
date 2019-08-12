@@ -1,0 +1,4 @@
+com/vaannila/domain/User.class
+com/vaannila/service/UserServiceImpl.class
+com/vaannila/web/UserController.class
+com/vaannila/service/UserService.class
