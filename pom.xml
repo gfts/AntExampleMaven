@@ -4,7 +4,7 @@
   <groupId>com.vaannila</groupId>
   <artifactId>AntExampleMaven</artifactId>
   <packaging>war</packaging>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <name>AntExampleMaven Maven Webapp</name>
   <url>https://repo.maven.apache.org/maven2</url>
 
@@ -40,12 +40,12 @@
   <repository>
     <id>nexus-releases</id>
     <!-- CHANGE HERE by your team nexus server -->
-    <url>http://ec2-54-84-15-86.compute-1.amazonaws.com:8081/repository/servlet-release/</url>
+    <url>http://ec2-54-209-31-52.compute-1.amazonaws.com:8081/repository/servlet-release/</url>
   </repository>
   <snapshotRepository>
     <id>nexus-snapshots</id>
     <!-- CHANGE HERE by your team nexus server -->
-    <url>http://ec2-54-84-15-86.compute-1.amazonaws.com:8081/repository/servlet-snapshot/</url>
+    <url>http://ec2-54-209-31-52.compute-1.amazonaws.com:8081/repository/servlet-snapshot/</url>
   </snapshotRepository>
 </distributionManagement>
 
@@ -60,7 +60,7 @@
     <repository>
       <id>nexus-central</id>
       <name>nexus central</name>
-      <url>http://ec2-54-84-15-86.compute-1.amazonaws.com:8081/repository/servlet-central/</url>
+      <url>http://ec2-54-209-31-52.compute-1.amazonaws.com:8081/repository/servlet-central/</url>
     </repository>
 <repository>
     <id>spring-milestone</id>
